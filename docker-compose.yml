@@ -4,7 +4,7 @@ services:
     # Use your registry + repo name here:
     image: esperadoce/chaos-simulation:${TAG:-latest}
     ports:
-      - "8080:80"
+      - "12908:12908"
     restart: unless-stopped
     environment:
       - NODE_ENV=production

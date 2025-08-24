@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    # Uncomment if you want to serve from a custom nginx config
+    # volumes:
+    #   - ./nginx.conf:/etc/nginx/nginx.conf:ro

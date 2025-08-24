@@ -48,8 +48,10 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT || 22 }}
+          #port: ${{ secrets.SSH_PORT }}
           fingerprint: ${{ secrets.SSH_FINGERPRINT }}   # <-- host pinning here
+          debug: true
+          script_stop: true
           script: |
             set -e
             export TAG=${{ github.sha }}

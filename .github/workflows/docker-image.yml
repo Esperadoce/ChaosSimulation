@@ -42,15 +42,14 @@ jobs:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
-      - name: Probe host key (what the runner sees)
+      - name: Configure ssh
         run: |
-          set -e
-          HOST="${{ secrets.SSH_HOST }}"
-          PORT="${{ secrets.SSH_PORT || 22 }}"
-          echo "Probing $HOST:$PORT ..."
-          ssh-keyscan -T 5 -p "$PORT" "$HOST" 2>/dev/null | tee hostkeys.pub
-          echo "Fingerprints seen by runner:"
-          ssh-keygen -lf hostkeys.pub
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+          
       - name: Deploy via SSH (pull new image & restart compose)
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -58,7 +57,6 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          fingerprint: ${{ secrets.SSH_FINGERPRINT }}   # <-- host pinning here
           debug: true
           script_stop: true
           script: |

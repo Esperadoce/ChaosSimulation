@@ -42,6 +42,15 @@ jobs:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
+      - name: Probe host key (what the runner sees)
+        run: |
+          set -e
+          HOST="${{ secrets.SSH_HOST }}"
+          PORT="${{ secrets.SSH_PORT || 22 }}"
+          echo "Probing $HOST:$PORT ..."
+          ssh-keyscan -T 5 -p "$PORT" "$HOST" 2>/dev/null | tee hostkeys.pub
+          echo "Fingerprints seen by runner:"
+          ssh-keygen -lf hostkeys.pub
       - name: Deploy via SSH (pull new image & restart compose)
         uses: appleboy/ssh-action@v1.0.3
         with:

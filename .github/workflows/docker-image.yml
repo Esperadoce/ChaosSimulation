@@ -2,11 +2,11 @@ name: CI/CD
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   workflow_dispatch:
 
 env:
-  IMAGE_NAME: your-dockerhub-username/your-app
+  IMAGE_NAME: esperadoce/chaos-simulation
 
 jobs:
   build-and-push:

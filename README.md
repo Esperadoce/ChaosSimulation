@@ -18,8 +18,8 @@ This project is a collection of interactive chaos and physics simulations built 
 ## How to Run
 1. Clone this repository:
    ```sh
-   git clone <your-repo-url>
-   cd TutoAgent
+   git clone https://github.com/Esperadoce/ChaosSimulation.git
+   cd ChaosSimulation
    ```
 2. Install dependencies:
    ```sh

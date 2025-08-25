@@ -1,6 +1,7 @@
 services:
   app:
     image: esperadoce/chaos-simulation:${TAG:-latest}
+    container_name: chaos-simulation
     ports:
       - "12908:12908"
     restart: unless-stopped

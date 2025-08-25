@@ -63,7 +63,7 @@ jobs:
             set -e
             export TAG=latest
             cd /opt/chaos-simulation
-            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+            echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
             docker compose pull
             docker compose up -d
             docker image prune -f

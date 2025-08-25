@@ -61,9 +61,9 @@ jobs:
           script_stop: true
           script: |
             set -e
-            export TAG=${{ github.sha }}
+            export TAG=latest
             cd /opt/chaos-simulation
-            docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" -p "${{ secrets.DOCKERHUB_TOKEN }}"
+            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
             docker compose pull
             docker compose up -d
             docker image prune -f

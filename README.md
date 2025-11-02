@@ -1,4 +1,5 @@
-
+[![CI/CD](https://github.com/Esperadoce/ChaosSimulation/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Esperadoce/ChaosSimulation/actions/workflows/docker-image.yml)
+[![CI/CD](https://github.com/Esperadoce/ChaosSimulation/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Esperadoce/ChaosSimulation/actions/workflows/docker-image.yml)
 # Double Pendulum & Chaos Simulations
 
 This project is a collection of interactive chaos and physics simulations built with React, including:

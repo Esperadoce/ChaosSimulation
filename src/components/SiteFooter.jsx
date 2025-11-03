@@ -23,9 +23,9 @@ export default function SiteFooter() {
     return (
         <footer style={wrapper} role="contentinfo">
             <div style={small}>
-                © 2025 Hicham Bouchikhi (Esperadoce) · Licensed under <a href="/LICENSE" style={link}>Apache-2.0</a>
+                © 2025 Hicham Bouchikhi (Esperadoce) · Licensed under <a href="/LICENSE.txt" style={link}>Apache-2.0</a>
                 <span aria-hidden> · </span>
-                <a href="/NOTICE" style={link}>NOTICE</a>
+                <a href="/NOTICE.txt" style={link}>NOTICE</a>
                 <span aria-hidden> · </span>
                 <a href="https://github.com/Esperadoce/ChaosSimulation" target="_blank" rel="noopener noreferrer" style={link}>GitHub</a>
                 <span aria-hidden> · </span>

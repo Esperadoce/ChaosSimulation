@@ -1,5 +1,5 @@
-[![CI/CD](https://github.com/Esperadoce/ChaosSimulation/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Esperadoce/ChaosSimulation/actions/workflows/docker-image.yml)
-[![CI/CD](https://github.com/Esperadoce/ChaosSimulation/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Esperadoce/ChaosSimulation/actions/workflows/docker-image.yml)
+[![BUILD](https://github.com/Esperadoce/ChaosSimulation/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Esperadoce/ChaosSimulation/actions/workflows/docker-image.yml)
+[![DEPLOY](https://github.com/Esperadoce/ChaosSimulation/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Esperadoce/ChaosSimulation/actions/workflows/docker-image.yml)
 # Double Pendulum & Chaos Simulations
 
 This project is a collection of interactive chaos and physics simulations built with React, including:
@@ -30,7 +30,16 @@ This project is a collection of interactive chaos and physics simulations built 
    ```sh
    npm run dev
    ```
-4. Open your browser to `http://localhost:5173` (or as indicated in the terminal).
+4. Open your browser to `http://localhost:12908` (we configure Vite to use port 12908).
+
+### Run with Docker
+If you prefer containers:
+
+```sh
+docker compose up --build
+```
+
+Then visit http://localhost:12908 (mapped to port 80 in the container).
 
 ## About This Project
 This project was created as an experiment using **GitHub Copilot GPT-4.1** for all code, UI, and documentation. All logic, refactoring, and enhancements were generated with Copilot GPT-4.1, demonstrating the power of AI-assisted software development.
@@ -40,3 +49,12 @@ Feel free to fork, modify, and share!
 ---
 
 **Made with Copilot GPT-4.1**
+
+---
+
+## License
+
+Licensed under the Apache License, Version 2.0. See [`LICENSE`](./LICENSE) for details.
+
+This product includes software developed by Hicham Bouchikhi (Esperadoce).
+See [`NOTICE`](./NOTICE) for attribution. Repository: https://github.com/Esperadoce/ChaosSimulation · Live: https://chaos-simulation.narexil.tech/

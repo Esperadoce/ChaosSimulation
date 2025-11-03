@@ -2,12 +2,16 @@ import React from 'react';
 
 export default function SiteFooter() {
     const wrapper = {
-        marginTop: '3em',
-        padding: '1em 0.8em',
+        position: 'fixed',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        padding: '0.8em 0.8em',
         textAlign: 'center',
         color: '#455a64',
         borderTop: '1px solid #e5e7eb',
         background: 'linear-gradient(90deg, #fafafa 0%, #f5f7fa 100%)',
+        zIndex: 900,
     };
     const link = {
         color: '#1976d2',

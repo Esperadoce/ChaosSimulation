@@ -3,6 +3,7 @@ import LorenzAttractorPage from './LorenzAttractorPage';
 import ThreeBodyPage from './ThreeBodyPage';
 import MandelbrotPage from './MandelbrotWebGLPage';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import GitHubBadge from './components/GitHubBadge';
 
 function App() {
     // Mandelbrot parameter passing (if needed in future)
@@ -95,6 +96,7 @@ function App() {
                 <Route path="/threebody" element={<ThreeBodyPage />} />
                 <Route path="/mandelbrot" element={<MandelbrotPage />} />
             </Routes>
+            <GitHubBadge />
         </Router>
     );
 }

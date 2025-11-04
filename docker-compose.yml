@@ -1,9 +1,16 @@
 services:
   app:
     image: esperadoce/chaos-simulation:${TAG:-latest}
-    container_name: chaos-simulation
+    container_name: chaos-simulation-app
     ports:
-      - "12908:12908"
+      - "12908:80"
     restart: unless-stopped
+    networks: [default]
     environment:
       - NODE_ENV=production
+
+
+networks:
+  default:
+    name: nginx_network
+    external: true

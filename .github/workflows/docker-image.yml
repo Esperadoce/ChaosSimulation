@@ -39,6 +39,8 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
   deploy:
+    # Run deploy only when manually triggered (workflow_dispatch). Disabled on push.
+    if: ${{ github.event_name == 'workflow_dispatch' }}
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:

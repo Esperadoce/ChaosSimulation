@@ -99,16 +99,16 @@ function DoublePendulum({
             animationId = requestAnimationFrame(animate);
         }
 
-    // Set devicePixelRatio-aware canvas size
-    const canvas = canvasRef.current;
-    const dpr = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    canvas.style.width = width + 'px';
-    canvas.style.height = height + 'px';
-    const ctx = canvas.getContext('2d');
-    ctx.scale(dpr, dpr);
-    draw();
+        // Set devicePixelRatio-aware canvas size
+        const canvas = canvasRef.current;
+        const dpr = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        const ctx = canvas.getContext('2d');
+        ctx.scale(dpr, dpr);
+        draw();
         animationId = requestAnimationFrame(animate);
         return () => cancelAnimationFrame(animationId);
         // eslint-disable-next-line

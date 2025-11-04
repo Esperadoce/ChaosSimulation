@@ -40,8 +40,8 @@ function LorenzAttractorPage() {
     const [drawMode, setDrawMode] = useState('pathway'); // 'pathway' or 'fadedPoint'
 
     useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext('2d');
         const dt = 0.01;
         let running = true;
 
@@ -102,8 +102,8 @@ function LorenzAttractorPage() {
             animationRef.current = requestAnimationFrame(draw);
         }
 
-    canvas.width = isSmall ? 360 : 800;
-    canvas.height = isSmall ? 480 : 600;
+        canvas.width = isSmall ? 360 : 800;
+        canvas.height = isSmall ? 480 : 600;
         ctx.fillStyle = 'white';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 

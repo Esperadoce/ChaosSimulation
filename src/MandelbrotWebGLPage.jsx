@@ -44,7 +44,7 @@ function MandelbrotWebGLPage({ onRequestCPU }) {
 
     // WebGL Mandelbrot rendering
     useEffect(() => {
-    const canvas = canvasRef.current;
+        const canvas = canvasRef.current;
         let gl = canvas.getContext('webgl2');
         let usingWebGL2 = true;
         setGlError('');
@@ -112,7 +112,7 @@ function MandelbrotWebGLPage({ onRequestCPU }) {
         const u_color2 = gl.getUniformLocation(prog, 'u_color2');
         const u_color3 = gl.getUniformLocation(prog, 'u_color3');
         // Draw
-    gl.viewport(0, 0, canvas.width, canvas.height);
+        gl.viewport(0, 0, canvas.width, canvas.height);
         gl.clear(gl.COLOR_BUFFER_BIT);
         gl.uniform1f(u_centerX, params.centerX);
         gl.uniform1f(u_centerY, params.centerY);

@@ -8,7 +8,8 @@ body {
     margin: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
     background: #f5f5f5;
-    padding-bottom: 84px; /* room for fixed footer and badge */
+    padding-bottom: 84px;
+    /* room for fixed footer and badge */
 }
 
 h1 {
@@ -43,13 +44,23 @@ button:hover {
 
 /* Make canvases fit small screens */
 canvas {
-        max-width: 100%;
-        height: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 /* Mobile tweaks */
 @media (max-width: 820px) {
-    h1 { font-size: 1.4rem; }
-    label { margin: 0.4em 0.6em; font-size: 0.95em; }
-    button { width: 100%; max-width: 280px; }
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    label {
+        margin: 0.4em 0.6em;
+        font-size: 0.95em;
+    }
+
+    button {
+        width: 100%;
+        max-width: 280px;
+    }
 }

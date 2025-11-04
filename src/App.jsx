@@ -2,6 +2,7 @@ import PendulumPage from './PendulumPage';
 import LorenzAttractorPage from './LorenzAttractorPage';
 import ThreeBodyPage from './ThreeBodyPage';
 import MandelbrotPage from './MandelbrotWebGLPage';
+import MandelbrotCpuPage from './MandelbrotCpuPage';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import GitHubBadge from './components/GitHubBadge';
 import SiteFooter from './components/SiteFooter';
@@ -96,6 +97,7 @@ function App() {
                 <Route path="/lorenz" element={<LorenzAttractorPage />} />
                 <Route path="/threebody" element={<ThreeBodyPage />} />
                 <Route path="/mandelbrot" element={<MandelbrotPage />} />
+                <Route path="/mandelbrot-cpu" element={<MandelbrotCpuPage />} />
             </Routes>
             <SiteFooter />
             <GitHubBadge />

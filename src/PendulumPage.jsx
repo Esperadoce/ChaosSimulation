@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import useIsSmallScreen from './hooks/useIsSmallScreen';
 import DoublePendulum from './components/DoublePendulum';
 
 export default function PendulumPage() {
+    const isSmall = useIsSmallScreen(820);
     // Shared state for both pendulums except angles
     const [shared, setShared] = useState({
         rod1Length: 150,
@@ -24,10 +26,16 @@ export default function PendulumPage() {
         setAngles2(p => ({ ...p, [name]: value }));
     }
 
+    const columnStyle = isSmall
+        ? { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24 }
+        : { display: 'flex', justifyContent: 'center', gap: 40 };
+
+    const canvasSize = isSmall ? 340 : 700;
+
     return (
-        <div style={{ textAlign: 'center', maxWidth: 1100, margin: '0 auto' }}>
+        <div style={{ textAlign: 'center', maxWidth: 1100, margin: '0 auto', padding: '0 12px' }}>
             <h1>Double Pendulum Simulation</h1>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: 40 }}>
+            <div style={columnStyle}>
                 <div>
                     <DoublePendulum
                         rod1Length={shared.rod1Length}
@@ -37,6 +45,8 @@ export default function PendulumPage() {
                         angle1={angles1.angle1}
                         angle2={angles1.angle2}
                         acceleration={shared.acceleration}
+                        width={canvasSize}
+                        height={canvasSize}
                         running={running}
                         setRunning={setRunning}
                     />
@@ -58,6 +68,8 @@ export default function PendulumPage() {
                         angle1={angles2.angle1}
                         angle2={angles2.angle2}
                         acceleration={shared.acceleration}
+                        width={canvasSize}
+                        height={canvasSize}
                         running={running}
                         setRunning={setRunning}
                     />

@@ -1,4 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
+import useIsSmallScreen from './hooks/useIsSmallScreen';
+import { useNavigate } from 'react-router-dom';
 
 // Utility: hex to rgb array (0-255)
 function hexToRgb(hex) {
@@ -12,6 +14,8 @@ function hexToRgb(hex) {
 }
 
 function MandelbrotWebGLPage({ onRequestCPU }) {
+    const isSmall = useIsSmallScreen(820);
+    const navigate = useNavigate();
     const canvasRef = useRef(null);
     const [params, setParams] = useState({
         centerX: -0.5,
@@ -40,7 +44,7 @@ function MandelbrotWebGLPage({ onRequestCPU }) {
 
     // WebGL Mandelbrot rendering
     useEffect(() => {
-        const canvas = canvasRef.current;
+    const canvas = canvasRef.current;
         let gl = canvas.getContext('webgl2');
         let usingWebGL2 = true;
         setGlError('');
@@ -108,7 +112,7 @@ function MandelbrotWebGLPage({ onRequestCPU }) {
         const u_color2 = gl.getUniformLocation(prog, 'u_color2');
         const u_color3 = gl.getUniformLocation(prog, 'u_color3');
         // Draw
-        gl.viewport(0, 0, canvas.width, canvas.height);
+    gl.viewport(0, 0, canvas.width, canvas.height);
         gl.clear(gl.COLOR_BUFFER_BIT);
         gl.uniform1f(u_centerX, params.centerX);
         gl.uniform1f(u_centerY, params.centerY);
@@ -182,11 +186,12 @@ function MandelbrotWebGLPage({ onRequestCPU }) {
         };
     }, [canvasRef]);
 
+    const size = isSmall ? 320 : 600;
     return (
         <div>
             {glError && <div style={{ color: 'red', margin: '1em', textAlign: 'center' }}>{glError}</div>}
             <h1 style={{ textAlign: 'center', margin: '1em 0' }}>Mandelbrot Set WebGL (GPU)</h1>
-            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center', gap: '50px', background: '#f7f7fa' }}>
+            <div style={{ display: 'flex', flexDirection: isSmall ? 'column' : 'row', alignItems: isSmall ? 'stretch' : 'flex-start', justifyContent: 'center', gap: '20px', background: '#f7f7fa', padding: isSmall ? '0 12px' : undefined }}>
                 <div style={{ background: 'white', borderRadius: '16px', boxShadow: '0 2px 12px rgba(0,0,0,0.08)', padding: '2em 1.5em', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1em', minWidth: '300px', maxWidth: '340px' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1em', width: '100%' }}>
                         <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -230,8 +235,11 @@ function MandelbrotWebGLPage({ onRequestCPU }) {
                     >
                         More Zoom 64bit calcule
                     </button>
+                    <button onClick={() => navigate('/mandelbrot-cpu')} style={{ marginTop: 8, padding: '0.5em 1.5em', width: '100%' }}>
+                        Switch to High Precision (CPU)
+                    </button>
                 </div>
-                <canvas ref={canvasRef} width={600} height={600} style={{ border: '1px solid #ccc', background: 'black', marginBottom: '1em' }} />
+                <canvas ref={canvasRef} width={size} height={size} style={{ border: '1px solid #ccc', background: 'black', margin: isSmall ? '0 auto 1em' : '0 0 1em 0' }} />
             </div>
         </div>
     );

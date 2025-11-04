@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import useIsSmallScreen from './hooks/useIsSmallScreen';
 
 // Use a set of highly distinct colors
 const distinctColors = [
@@ -29,6 +30,7 @@ function getDistinctColor(index) {
 }
 
 function LorenzAttractorPage() {
+    const isSmall = useIsSmallScreen(820);
     const canvasRef = useRef(null);
     const animationRef = useRef(); // Store animation frame ID
     const [attractors, setAttractors] = useState([
@@ -38,8 +40,8 @@ function LorenzAttractorPage() {
     const [drawMode, setDrawMode] = useState('pathway'); // 'pathway' or 'fadedPoint'
 
     useEffect(() => {
-        const canvas = canvasRef.current;
-        const ctx = canvas.getContext('2d');
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
         const dt = 0.01;
         let running = true;
 
@@ -100,8 +102,8 @@ function LorenzAttractorPage() {
             animationRef.current = requestAnimationFrame(draw);
         }
 
-        canvas.width = 800;
-        canvas.height = 600;
+    canvas.width = isSmall ? 360 : 800;
+    canvas.height = isSmall ? 480 : 600;
         ctx.fillStyle = 'white';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -203,7 +205,7 @@ function LorenzAttractorPage() {
     return (
         <div>
             <h1 style={{ textAlign: 'center', margin: '1em 0' }}>Lorenz Attractor Chaos Simulation</h1>
-            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center', gap: '50px' }}>
+            <div style={{ display: 'flex', flexDirection: isSmall ? 'column' : 'row', alignItems: isSmall ? 'stretch' : 'flex-start', justifyContent: 'center', gap: isSmall ? '16px' : '50px', padding: isSmall ? '0 12px' : undefined }}>
                 <div style={{
                     background: 'white',
                     borderRadius: '16px',
@@ -323,7 +325,7 @@ function LorenzAttractorPage() {
                         </table>
                     </div>
                 </div>
-                <canvas ref={canvasRef} style={{ border: '1px solid #ccc' }}></canvas>
+                <canvas ref={canvasRef} style={{ border: '1px solid #ccc', margin: isSmall ? '0 auto 1em' : 0, maxWidth: '100%' }}></canvas>
             </div>
         </div>
     );

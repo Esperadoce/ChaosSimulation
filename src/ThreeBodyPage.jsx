@@ -1,6 +1,8 @@
 import { useRef, useEffect, useState } from 'react';
+import useIsSmallScreen from './hooks/useIsSmallScreen';
 
 function ThreeBodyPage() {
+    const isSmall = useIsSmallScreen(820);
     const canvasRef = useRef(null);
     const [bodies, setBodies] = useState([
         { x: 400, y: 400, vx: 0, vy: 1.2, m: 300, color: '#e6194b' },
@@ -147,7 +149,7 @@ function ThreeBodyPage() {
         <div>
             <h1 style={{ textAlign: 'center', margin: '1em 0' }}>2D N-Body Problem Simulation</h1>
             <div style={{
-                display: 'flex', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center', gap: '50px', minHeight: '100vh', background: '#f7f7fa'
+                display: 'flex', flexDirection: isSmall ? 'column' : 'row', alignItems: isSmall ? 'stretch' : 'flex-start', justifyContent: 'center', gap: isSmall ? '16px' : '50px', minHeight: isSmall ? 'auto' : '100vh', background: '#f7f7fa', padding: isSmall ? '0 12px' : undefined
             }}>
                 <div style={{
                     background: 'white',
@@ -235,9 +237,9 @@ function ThreeBodyPage() {
                         </table>
                     </div>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 0, width: 1000 }}>
-                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 0, width: 1000 }}>
-                        <canvas ref={canvasRef} width={1000} height={1000} style={{ border: '1px solid #ccc', background: 'white', marginBottom: '1em' }} />
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 0, width: isSmall ? '100%' : 1000 }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 0, width: isSmall ? '100%' : 1000 }}>
+                        <canvas ref={canvasRef} width={isSmall ? 360 : 1000} height={isSmall ? 360 : 1000} style={{ border: '1px solid #ccc', background: 'white', marginBottom: '1em', maxWidth: '100%' }} />
                     </div>
                 </div>
             </div>

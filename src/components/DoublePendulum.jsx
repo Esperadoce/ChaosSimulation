@@ -33,10 +33,13 @@ function DoublePendulum({
         a2 = toRadians(a2);
 
         function draw() {
-            const ctx = canvasRef.current.getContext('2d');
-            ctx.clearRect(0, 0, width, height);
+            const canvas = canvasRef.current;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width;
+            const h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
             ctx.save();
-            ctx.translate(width / 2, 100);
+            ctx.translate(w / 2, 100);
 
             // Positions
             const x1 = l1 * Math.sin(a1);
@@ -96,7 +99,16 @@ function DoublePendulum({
             animationId = requestAnimationFrame(animate);
         }
 
-        draw();
+    // Set devicePixelRatio-aware canvas size
+    const canvas = canvasRef.current;
+    const dpr = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+    draw();
         animationId = requestAnimationFrame(animate);
         return () => cancelAnimationFrame(animationId);
         // eslint-disable-next-line

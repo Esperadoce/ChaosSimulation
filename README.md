@@ -46,11 +46,6 @@ This project was created as an experiment using **GitHub Copilot GPT-4.1** for a
 
 Feel free to fork, modify, and share!
 
----
-
-**Made with Copilot GPT-4.1**
-
----
 
 ## License
 
